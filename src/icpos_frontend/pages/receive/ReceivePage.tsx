@@ -22,16 +22,17 @@ export default function ReceivePage() {
     if (!merchantState || !merchantState.merchant || !identity)
       return <FullpageLoading />;
   }
-
+  const currency = "icp";
+  
   const principal =
     params.get("principal") || identity?.getPrincipal().toString() || "";
 
   const amount = params.get("amount");
 
   const qrCodeValue = amount
-    ? `ckbtc:${principal}?amount=${amount}`
+    ? `${currency}:${principal}?amount=${amount}`
     : principal;
-
+  console.log('qrCodeValue', qrCodeValue)
   return (
     <Page>
       <div className="relative flex flex-col grow">
