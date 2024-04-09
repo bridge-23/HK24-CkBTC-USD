@@ -22,7 +22,6 @@ export const idlFactory = ({ IDL }) => {
     'getLogs' : IDL.Func([], [IDL.Vec(IDL.Text)], ['query']),
     'getMerchant' : IDL.Func([], [Response], ['query']),
     'setCourierApiKey' : IDL.Func([IDL.Text], [Response_1], []),
-    'setLedgerId' : IDL.Func([IDL.Text], [Response_1], []),
     'updateMerchant' : IDL.Func([Merchant], [Response], []),
   });
   return Main;

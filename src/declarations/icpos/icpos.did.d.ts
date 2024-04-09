@@ -1,11 +1,11 @@
 import type { Principal } from '@dfinity/principal';
 import type { ActorMethod } from '@dfinity/agent';
+import type { IDL } from '@dfinity/candid';
 
 export interface Main {
   'getLogs' : ActorMethod<[], Array<string>>,
   'getMerchant' : ActorMethod<[], Response>,
   'setCourierApiKey' : ActorMethod<[string], Response_1>,
-  'setLedgerId' : ActorMethod<[string], Response_1>,
   'updateMerchant' : ActorMethod<[Merchant], Response>,
 }
 export interface Merchant {
@@ -28,3 +28,5 @@ export interface Response_1 {
   'error_text' : [] | [string],
 }
 export interface _SERVICE extends Main {}
+export declare const idlFactory: IDL.InterfaceFactory;
+export declare const init: (args: { IDL: typeof IDL }) => IDL.Type[];

@@ -22,10 +22,19 @@ type Merchant =
  };
 type Main = 
  service {
+   /// * Get latest log items. Log output is capped at 100 items.
    getLogs: () -> (vec text) query;
+   /// *  Get the merchant's information
    getMerchant: () -> (Response) query;
+   /// * Set the courier API key. Only the owner can set the courier API key.
    setCourierApiKey: (text) -> (Response_1);
-   setLedgerId: (text) -> (Response_1);
+   /// * Update the merchant's information
    updateMerchant: (Merchant) -> (Response);
  };
+/// *  This actor is responsible for:
+/// *  - Storing merchant information
+/// *  - Monitoring the ledger for new transactions
+/// *  - Notifying merchants of new transactions
+/// *
+/// *  `_startBlock` is the block number to start monitoring transactions from.
 service : (nat) -> Main

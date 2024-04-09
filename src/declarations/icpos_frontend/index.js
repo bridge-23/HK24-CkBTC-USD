@@ -10,8 +10,7 @@ export { idlFactory } from "./icpos_frontend.did.js";
  * beginning in dfx 0.15.0
  */
 export const canisterId =
-  process.env.CANISTER_ID_ICPOS_FRONTEND ||
-  process.env.ICPOS_FRONTEND_CANISTER_ID;
+  process.env.CANISTER_ID_ICPOS_FRONTEND;
 
 export const createActor = (canisterId, options = {}) => {
   const agent = options.agent || new HttpAgent({ ...options.agentOptions });
@@ -40,4 +39,4 @@ export const createActor = (canisterId, options = {}) => {
   });
 };
 
-export const icpos_frontend = createActor(canisterId);
+export const icpos_frontend = canisterId ? createActor(canisterId) : undefined;
