@@ -9,6 +9,8 @@ import React from "react";
 import { _SERVICE } from "@dfinity/ledger/dist/candid/icrc1_ledger";
 import { idlFactory } from "@dfinity/ledger/dist/candid/icrc1_ledger.idl";
 
+//TODO: Init ckBTC in mainnet
+
 export function useCkBtcLedgerAnon() {
   const [ckBtcLedger, setCkBtcLedger] = React.useState<
     ActorSubclass<_SERVICE> | undefined
