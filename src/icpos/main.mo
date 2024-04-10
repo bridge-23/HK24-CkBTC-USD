@@ -265,6 +265,7 @@ shared (actorContext) actor class Main(_startBlock : Nat) {
     let end_timestamp : Types.Timestamp = 1682978520;//May 1, 2023 22:02:00 GMT
     let host : Text = "api.pro.coinbase.com";
     let url = "https://" # host # "/products/ICP-USD/candles?start=" # Nat64.toText(start_timestamp) # "&end=" # Nat64.toText(start_timestamp) # "&granularity=" # Nat64.toText(ONE_MINUTE);
+    //let url = "https://api.coingecko.com/api/v3/simple/price?ids=chain-key-bitcoin&vs_currencies=${currency.toLowerCase()}";
 
     // 2.2 prepare headers for the system http_request call
     let request_headers = [
