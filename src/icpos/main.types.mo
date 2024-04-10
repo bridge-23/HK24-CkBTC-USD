@@ -13,4 +13,9 @@ module Types {
     data : ?T;
     error_text : ?Text;
   };
+
+  public type ExchangeRateResponse = {
+        rate: Float;
+        currency: Text;
+    };
 };
