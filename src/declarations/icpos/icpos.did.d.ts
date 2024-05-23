@@ -7,6 +7,7 @@ export interface Main {
   'getMerchant' : ActorMethod<[], Response>,
   'setCourierApiKey' : ActorMethod<[string], Response_1>,
   'updateMerchant' : ActorMethod<[Merchant], Response>,
+  'get_icp_usd_exchange' : ActorMethod<[], string>,
 }
 export interface Merchant {
   'email_address' : string,

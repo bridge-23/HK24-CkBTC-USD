@@ -9,6 +9,7 @@ import { KeyPad } from "./components/KeyPad";
 import { Key } from "./types/key.type";
 import ChargeButton from "./components/ChargeButton";
 import { CurrencySelector } from "../../pages/charge/components/CurrencySelector";
+import { icpos } from '../../../declarations/icpos';
 
 function useDebounce(value: string, delay: number) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -28,7 +29,7 @@ function useDebounce(value: string, delay: number) {
 
 export default function ChargePage() {
   const [amount, setAmount] = useState<string>("0");
-  const [currency, setCurrency] = useState<string>("HKD");
+  const [currency, setCurrency] = useState<string>("USD");
   const [ckBTCAmount, setCkBTCAmount] = useState<string>("0");
 
   const debouncedAmount = useDebounce(amount, 500);
@@ -40,7 +41,7 @@ export default function ChargePage() {
         return;
       }
 
-      const rate = await fetchCurrencyRate(currency);
+      const rate = await fetchCurrencyRate();
       if (rate) {
         const convertedAmount = parseFloat(debouncedAmount) / rate;
         setCkBTCAmount(convertedAmount.toString());
@@ -50,15 +51,12 @@ export default function ChargePage() {
     };
 
     updateIcpAmount();
-  }, [debouncedAmount, currency]);
+  }, [debouncedAmount]);
 
-  async function fetchCurrencyRate(currency: string) {
-    const url = `https://api.coingecko.com/api/v3/simple/price?ids=chain-key-bitcoin&vs_currencies=${currency.toLowerCase()}`;
-
+  async function fetchCurrencyRate() {
     try {
-      const response = await fetch(url);
-      const data = await response.json();
-      return data['chain-key-bitcoin'][currency.toLowerCase()];
+      const rate = await icpos.get_icp_usd_exchange();
+      return parseFloat(rate);
     } catch (error) {
       console.error("Error fetching exchange rate:", error);
       return null;
